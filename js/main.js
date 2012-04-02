@@ -1,22 +1,28 @@
-// A call to require() to load all the scripts you need and any init work you want to do for the page. 
-// This main.js script loads two plugins, jquery.js, bootstrap 
-// The plugins should be in the same directory as require-jquery.js
-
+// Require.js allows us to configure shortcut alias
+// Their usage will become more apparent futher along in the tutorial.
 require.config({
   paths: {
     // Major libraries
-    jquery: 'libs/jquery',
-    //underscore: 'libs/underscore', // https://github.com/amdjs
-    //backbone: 'libs/backbone/backbone', // https://github.com/amdjs
-    bootstrap: 'libs/bootstrap',
+    jquery: 'libs/jquery/jquery-min.1.7.2',
+    underscore: 'libs/underscore/underscore-min', // https://github.com/amdjs
+    backbone: 'libs/backbone/backbone-min', // https://github.com/amdjs
 
     // Require.js plugins
-    //text: 'libs/require/text',
-    //order: 'libs/require/order',
-
+    text: 'libs/require/text',
     // Just a short cut so we can put our html outside the js dir
     // When you have HTML/CSS designers this aids in keeping them out of the js directory
-    templates: 'templates'
+    templates: '../templates'
   }
 
+});
+
+// Let's kick off the application
+
+require([
+  'views/app',
+  'router'
+], function(AppView, Router){
+  var appView = new AppView();
+  appView.render();  
+  Router.initialize();
 });
